@@ -4,19 +4,41 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float upwardSpeed;
+    public Rigidbody2D rb;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public float xSpeed;
+    public float ySpeed;
+
+    bool jump = false;
+
+    void Update() {
+        if (Input.GetKeyDown("space")) {
+            jump = true;
+        }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 targetPos = new Vector3(transform.position.x, transform.position.y + upwardSpeed, transform.position.z);
+        if (jump) {
+            MovePlayer(xSpeed, ySpeed + 10);
+        } else {
+            MovePlayer(0, ySpeed);
+        }
+    }
 
-        transform.position = Vector3.Lerp(transform.position, targetPos, .2f);
+    void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log(collision.collider.tag);
+
+        if(collision.collider.tag == "left" && jump) {
+            xSpeed = Mathf.Abs(xSpeed);
+            jump = false;
+        } else if(collision.collider.tag == "right" && jump) {
+            xSpeed = -Mathf.Abs(xSpeed);
+            jump = false;
+        }
+    }
+
+    void MovePlayer(float x, float y) {
+        rb.MovePosition(rb.position + new Vector2(x, y) * Time.fixedDeltaTime);
     }
 }
