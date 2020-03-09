@@ -12,7 +12,7 @@ public class CameraScript : MonoBehaviour {
     public Vector3 camOffset;
     public float smoothSpeed;
     
-    const float bgTravelDistance = 12.31f;
+    const float bgTravelDistance = 12.15f;
 
     // Start is called before the first frame update
     void Start() {
@@ -29,8 +29,9 @@ public class CameraScript : MonoBehaviour {
     }
 
     void FollowPlayer() {
-        Vector3 pos = new Vector3(target.position.x + camOffset.x, target.position.y + camOffset.y, camOffset.z);
-        pos.x = target.position.x < 0 ? -Mathf.Abs(camOffset.x) : Mathf.Abs(camOffset.x);
+        Vector3 pos = new Vector3(target.position.x + camOffset.x, target.position.y + camOffset.y, camOffset.z) {
+            x = target.position.x < 0 ? -Mathf.Abs(camOffset.x) : Mathf.Abs(camOffset.x)
+        };
 
         Vector3 smoothedPos = Vector3.Lerp(transform.position, pos, smoothSpeed * Time.fixedDeltaTime);
         transform.position = smoothedPos;

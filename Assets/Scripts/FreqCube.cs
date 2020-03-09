@@ -20,7 +20,7 @@ public class FreqCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(AudioSpectrum.freqBands[band] > 0.3) {
+        if(AudioSpectrum.freqBands[band] > 2) {
             GetComponent<Image>().color = new Color32(240, 52, 52, 255);
         } else {
             GetComponent<Image>().color = new Color32(255, 255, 255, 255);

@@ -6,10 +6,12 @@ using UnityEngine;
 public class AudioSpectrum : MonoBehaviour
 {
     AudioSource audioSource;
-    float[] samples = new float[512];
+
     public static float[] freqBands = new float[8];
-    float[] freqBandHighest = new float[8];
     public static float[] audioBand = new float[8];
+
+    float[] samples = new float[512];
+    float[] freqBandHighest = new float[8];
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +23,15 @@ public class AudioSpectrum : MonoBehaviour
     void Update()
     {
         GetSpectrumAudioSource();
-        createFreqBands();
-        createAudioBands();
+        CreateFreqBands();
+        CreateAudioBands();
     }
 
     void GetSpectrumAudioSource() {
         audioSource.GetSpectrumData(samples, 0, FFTWindow.Blackman);
     }
 
-    void createFreqBands() {
+    void CreateFreqBands() {
         int count = 0;
 
         for(int i = 0; i < 8; i++) {
@@ -50,7 +52,7 @@ public class AudioSpectrum : MonoBehaviour
         }
     }
 
-    void createAudioBands() {
+    void CreateAudioBands() {
         for(int i = 0; i < 8; i++) {
             if(freqBands[i] > freqBandHighest[i]) {
                 freqBandHighest[i] = freqBands[i];

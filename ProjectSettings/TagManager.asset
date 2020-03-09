@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - left
-  - right
   - Background
+  - Obstacle
+  - Window
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX

@@ -256,7 +256,7 @@ PrefabInstance:
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.62
+      value: 24.3
       objectReference: {fileID: 0}
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
@@ -307,6 +307,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Background (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399814784668393837, guid: 5599ef478abed5848ad69321740f8fe3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5599ef478abed5848ad69321740f8fe3, type: 3}
@@ -376,7 +381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117762423}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -5.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -746,7 +751,7 @@ PrefabInstance:
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.31
+      value: 12.15
       objectReference: {fileID: 0}
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
@@ -1053,7 +1058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5987011, y: -6.4800005, z: -10}
+  m_LocalPosition: {x: -0.5987011, y: -11.950001, z: -10}
   m_LocalScale: {x: 2.3797085, y: 2.3797085, z: 2.3797085}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1288,7 +1293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819953908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -22.88, z: -1}
+  m_LocalPosition: {x: 0.03, y: -19.49, z: -1}
   m_LocalScale: {x: 2.0429058, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2066,13 +2071,14 @@ GameObject:
   - component: {fileID: 1651328571}
   - component: {fileID: 1651328570}
   - component: {fileID: 1651328569}
+  - component: {fileID: 1651328572}
   m_Layer: 0
   m_Name: AudioSpectrum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1651328569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2097,7 +2103,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4bbaab5e310c6104d95b4e56cc3d5cb8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2189,12 +2195,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651328568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 537.34314, y: 190.36703, z: -672.5}
+  m_LocalPosition: {x: 537.34314, y: 184.89703, z: -672.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1651328572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651328568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae8bd1483a6c504687e8e975ee1fadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleOffset: 5
+  trigggerValue: 1
+  spawnOffset: -2
+  prefabs:
+  - {fileID: 425803370737197081, guid: 1a65c72c0cb02794fb304912bb7343d3, type: 3}
+  - {fileID: 1562539442408685156, guid: f2abf5dc1b2078e43a3acddfb19715d9, type: 3}
+  - {fileID: 2352327644861838329, guid: 5291c3ee2b636454791afa24d1a43345, type: 3}
 --- !u!1 &1743203895 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7031556165198763568, guid: f55cc356edc60ad4696746a5331fd3e9,
@@ -2543,7 +2568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956433627}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.607, y: -10.05, z: 0}
+  m_LocalPosition: {x: -1.607, y: -15.52, z: 0}
   m_LocalScale: {x: 0.13549301, y: 0.13549301, z: 0.13549301}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2564,6 +2589,7 @@ MonoBehaviour:
   rb: {fileID: 1956433631}
   xSpeed: 10
   ySpeed: 5
+  jumpHeight: 7
 --- !u!50 &1956433631
 Rigidbody2D:
   serializedVersion: 4

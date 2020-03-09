@@ -8,8 +8,10 @@ public class Player : MonoBehaviour
 
     public float xSpeed;
     public float ySpeed;
+    public float jumpHeight;
 
     bool jump = false;
+    bool gameOver = false;
 
     void Update() {
         if (Input.GetKeyDown("space")) {
@@ -20,43 +22,43 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         if (jump) {
-            MovePlayer(xSpeed, ySpeed + 10);
+            MovePlayer(xSpeed, ySpeed + jumpHeight);
         } else {
             MovePlayer(0, ySpeed);
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.collider.CompareTag("Obstacle")) {
+            gameOver = true;
+        }
+    }
+
     void OnCollisionExit2D(Collision2D collision) {
-        collision.collider.isTrigger = true;
+        if (collision.collider.CompareTag("Left") || collision.collider.CompareTag("Right")) {
+            collision.collider.isTrigger = true;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
         if(jump) collision.isTrigger = false;
 
-        if (collision.CompareTag("left") && jump) {
+        if (collision.CompareTag("Left") && jump) {
             xSpeed = Mathf.Abs(xSpeed);
             jump = false;
-        } else if (collision.CompareTag("right") && jump) {
+        } else if (collision.CompareTag("Right") && jump) {
             xSpeed = -Mathf.Abs(xSpeed);
             jump = false;
         }
     }
 
     void OnTriggerExit2D(Collider2D collision) {
-        collision.isTrigger = true;
+        if(collision.CompareTag("Left") || collision.CompareTag("Right")) {
+            collision.isTrigger = true;
+        }
     }
 
     void MovePlayer(float x, float y) {
         rb.MovePosition(rb.position + new Vector2(x, y) * Time.fixedDeltaTime);
     }
-
-    /*
-    IEnumerator ExecuteAfterTime(float time, Collider2D obj) {
-        yield return new WaitForSeconds(time);
-
-        // Code
-
-        //StartCoroutine(ExecuteAfterTime(1, collision));  Call
-    }
-    */
 }
