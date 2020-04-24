@@ -10,11 +10,12 @@ public class Player : MonoBehaviour
     public float ySpeed;
     public float jumpHeight;
 
+    public static bool gameOver = false;
+
     bool jump = false;
-    bool gameOver = false;
 
     void Update() {
-        if (Input.GetKeyDown("space")) {
+        if (Input.touchCount > 0 || Input.GetKeyDown("space")) {
             jump = true;
         }
     }
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if(jump) collision.isTrigger = false;
+        if (jump) collision.isTrigger = false;
 
         if (collision.CompareTag("Left") && jump) {
             xSpeed = Mathf.Abs(xSpeed);

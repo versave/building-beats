@@ -8,6 +8,7 @@ public class ManageObstacles : MonoBehaviour
     public float trigggerValue;
     public float spawnOffset;
 
+    private int lastSpawn = 1;
     private float posY = 0;
     private float camY;
     private float lastPosition = 0;
@@ -37,17 +38,27 @@ public class ManageObstacles : MonoBehaviour
 
         for (int i = 0; i < 8; i++) {
             if (AudioSpectrum.freqBands[i] >= trigggerValue) {
+                int spawnPos;
+
+                if(lastSpawn == 1) {
+                    spawnPos = 0;
+                } else {
+                    spawnPos = 1;
+                }
+
+                lastSpawn = spawnPos;
+
                 obstacleIndex = GetObstacleIndex(i);
 
                 GameObject obstacle = prefabs[obstacleIndex];
                 Vector3 obstaclePos = obstacle.transform.position;
 
                 yPosition = lastPosition == 0 ? cam.transform.position.y + 8 : lastPosition + obstacleOffset;
-                xPosition = GetXPosition(obstacleIndex);
+                xPosition = GetXPosition(obstacleIndex, spawnPos);
                 
-                if(lastPosition < cam.transform.position.y + 8) {
+                if(yPosition < cam.transform.position.y + 8) {
                     yPosition = cam.transform.position.y + 8;
-                }                
+                }
 
                 Vector3 position = new Vector3(xPosition, yPosition, obstaclePos.z);
                 Quaternion rotation = Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f));
@@ -70,18 +81,18 @@ public class ManageObstacles : MonoBehaviour
         }
     }
 
-    private float GetXPosition(int index) {
+    private float GetXPosition(int index, int side) {
         float[] acEdges = new float[2] { -1.774f, 1.774f };
         float[] windowEdges = new float[2] { -2.592f, 2.592f };
-        float cactusPos = Random.Range(-1.297f, 1.297f);
-
-        switch (index) {
+        float cactusPos = (Mathf.Round(Random.Range(-1.59f, 1.59f) * 100)) / 100.0f;
+        
+        switch(index) {
             case 0:
-                return acEdges[Random.Range(0, 2)];
+                return acEdges[side];
             case 1:
                 return cactusPos;
             case 2:
-                return windowEdges[Random.Range(0, 2)];
+                return windowEdges[side];
             default:
                 return 0;
         }

@@ -17,6 +17,10 @@ public class AudioSpectrum : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        audioSource.clip = GameManager.songClip;
+
+        audioSource.Play();
     }
 
     // Update is called once per frame

@@ -9,6 +9,8 @@ TagManager:
   - Window
   - Left
   - Right
+  - Test
+  - Game Manager
   layers:
   - Default
   - TransparentFX
