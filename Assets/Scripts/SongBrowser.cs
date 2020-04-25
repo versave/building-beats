@@ -7,7 +7,6 @@ public class SongBrowser : MonoBehaviour {
     // Warning: FileBrowser can only show 1 dialog at a time
 
     void Start() {
-
         // Set filters (optional)
         // It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
         // if all the dialogs will be using the same filters
@@ -45,10 +44,10 @@ public class SongBrowser : MonoBehaviour {
         //                                true, null, "Select Folder", "Select" );
 
         // Coroutine example
-        StartCoroutine(ShowLoadDialogCoroutine());
+        //StartCoroutine(ShowLoadDialogCoroutine());
     }
 
-    IEnumerator ShowLoadDialogCoroutine() {
+    public IEnumerator ShowLoadDialogCoroutine() {
         // Show a load file dialog and wait for a response from user
         // Load file/folder: file, Initial path: default (Documents), Title: "Load File", submit button text: "Load"
         yield return FileBrowser.WaitForLoadDialog(false, null, "Load File", "Load");
@@ -56,12 +55,16 @@ public class SongBrowser : MonoBehaviour {
         // Dialog is closed
         // Print whether a file is chosen (FileBrowser.Success)
         // and the path to the selected file (FileBrowser.Result) (null, if FileBrowser.Success is false)
-        
+
         // Debug.Log(FileBrowser.Success + " " + FileBrowser.Result);
 
         if (FileBrowser.Success) {
             // Send path to Game Manager
             StartCoroutine(GameManager.GetAudioClip(FileBrowser.Result));
+
+            // Reset beats menu
+            GameManager.selectedBeatIndex = null;
+            BeatMenu.ResetBeats();
 
             // If a file was chosen, read its bytes via FileBrowserHelpers
             // Contrary to File.ReadAllBytes, this function works on Android 10+, as well

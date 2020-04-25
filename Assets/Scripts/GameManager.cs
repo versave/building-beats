@@ -5,15 +5,19 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    public bool godMode;
-
     public static AudioClip songClip;
+    public AudioClip defaultClip;
     public AudioSource audioContainer;
+    
+    public static int? selectedBeatIndex = 0;
+    public bool godMode;
 
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
 
-        if(GameObject.FindGameObjectsWithTag("Game Manager").Length > 1) {
+        if(songClip == null) songClip = defaultClip;
+
+        if (GameObject.FindGameObjectsWithTag("Game Manager").Length > 1) {
             Destroy(GameObject.FindGameObjectsWithTag("Game Manager")[0]);
         }
     }
@@ -30,10 +34,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    public void QuitGame() {
-        Application.Quit();
-    }
-
     public static IEnumerator GetAudioClip(string path) {
         string songPath = @"file://" + path + "";
 
@@ -48,5 +48,9 @@ public class GameManager : MonoBehaviour
                 songClip = DownloadHandlerAudioClip.GetContent(www);
             }
         }
+    }
+
+    public void OpenFileBrowser() {
+        StartCoroutine(GetComponent<SongBrowser>().ShowLoadDialogCoroutine());
     }
 }

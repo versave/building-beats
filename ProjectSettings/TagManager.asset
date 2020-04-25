@@ -11,6 +11,7 @@ TagManager:
   - Right
   - Test
   - Game Manager
+  - Beat Button
   layers:
   - Default
   - TransparentFX
