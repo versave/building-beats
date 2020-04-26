@@ -891,7 +891,13 @@ MonoBehaviour:
   spawnOffset: -4
   prefabs:
   - {fileID: 425803370737197081, guid: 1a65c72c0cb02794fb304912bb7343d3, type: 3}
+  - {fileID: 425803370737197081, guid: 1a65c72c0cb02794fb304912bb7343d3, type: 3}
+  - {fileID: 425803370737197081, guid: 1a65c72c0cb02794fb304912bb7343d3, type: 3}
   - {fileID: 1562539442408685156, guid: f2abf5dc1b2078e43a3acddfb19715d9, type: 3}
+  - {fileID: 1562539442408685156, guid: f2abf5dc1b2078e43a3acddfb19715d9, type: 3}
+  - {fileID: 1562539442408685156, guid: f2abf5dc1b2078e43a3acddfb19715d9, type: 3}
+  - {fileID: 2352327644861838329, guid: 5291c3ee2b636454791afa24d1a43345, type: 3}
+  - {fileID: 2352327644861838329, guid: 5291c3ee2b636454791afa24d1a43345, type: 3}
   - {fileID: 2352327644861838329, guid: 5291c3ee2b636454791afa24d1a43345, type: 3}
 --- !u!1 &1901268275
 GameObject:

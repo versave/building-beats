@@ -30,7 +30,6 @@ public class ManageObstacles : MonoBehaviour
     }
 
     void CreateObstacles() {
-        int obstacleIndex;
         float yPosition;
         float xPosition;
 
@@ -38,13 +37,11 @@ public class ManageObstacles : MonoBehaviour
             if (AudioSpectrum.freqBands[i] >= trigggerValue) {
                 float camTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).y;
 
-                obstacleIndex = GetObstacleIndex(i);
-
-                GameObject obstacle = prefabs[obstacleIndex];
+                GameObject obstacle = prefabs[i];
                 Vector3 obstaclePos = obstacle.transform.position;
 
                 yPosition = lastPosition == 0 ? camTop : lastPosition + obstacleOffset;
-                xPosition = GetXPosition(obstacleIndex, lastSpawn);
+                xPosition = GetXPosition(i, lastSpawn);
                 
                 if(yPosition < camTop) {
                     yPosition = camTop;
@@ -61,36 +58,23 @@ public class ManageObstacles : MonoBehaviour
         }
     }
 
-    private int GetObstacleIndex(int i) {
-        if (i <= 2) {
-            return 0;
-        } else if (i > 2 && i <= 5) {
-            return 1;
-        } else {
-            return 2;
-        }
-    }
-
     private float GetXPosition(int index, int side) {
-        float[] acEdges = new float[2] { -1.774f, 1.774f };
-        float[] windowEdges = new float[2] { -2.592f, 2.592f };
-        float cactusPos = (Mathf.Round(Random.Range(-1.59f, 1.59f) * 100)) / 100.0f;
+        float midPos = (Mathf.Round(Random.Range(-1.59f, 1.59f) * 100)) / 100.0f;
+        float[] lowPos = new float[2] { -1.774f, 1.774f };
+        float[] highPos = new float[2] { -2.592f, 2.592f };
 
         void SetLastSpawn(int spawn) {
             lastSpawn = spawn == 1 ? 0 : 1;
         }
 
-        switch (index) {
-            case 0:
-                SetLastSpawn(side);
-                return acEdges[side];
-            case 1:
-                return cactusPos;
-            case 2:
-                SetLastSpawn(side);
-                return windowEdges[side];
-            default:
-                return 0;
+        if (index <= 2) {
+            SetLastSpawn(side);
+            return lowPos[side];
+        } else if (index > 2 && index <= 5) {
+            return midPos;
+        } else {
+            SetLastSpawn(side);
+            return highPos[side];
         }
     }
 }
