@@ -15,7 +15,6 @@ public class AudioSpectrum : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-
         audioSource.clip = GameManager.songClip;
 
         audioSource.Play();
@@ -62,5 +61,9 @@ public class AudioSpectrum : MonoBehaviour
 
             audioBand[i] = (freqBands[i] / freqBandHighest[i]);
         }
+    }
+
+    public void StopAudio() {
+        audioSource.Stop();
     }
 }
