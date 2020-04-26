@@ -50,7 +50,7 @@ public class SongBrowser : MonoBehaviour {
     public IEnumerator ShowLoadDialogCoroutine() {
         // Show a load file dialog and wait for a response from user
         // Load file/folder: file, Initial path: default (Documents), Title: "Load File", submit button text: "Load"
-        yield return FileBrowser.WaitForLoadDialog(false, null, "Load File", "Load");
+        yield return FileBrowser.WaitForLoadDialog(false, null, "Load .mp3 File", "Load");
 
         // Dialog is closed
         // Print whether a file is chosen (FileBrowser.Success)
