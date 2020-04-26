@@ -6,7 +6,7 @@ public class ManageObstacles : MonoBehaviour
     public float trigggerValue;
     public float spawnOffset;
 
-    private int lastSpawn = 1;
+    private int lastSpawn = 0;
     private float posY = 0;
     private float camY;
     private float lastPosition = 0;
@@ -36,26 +36,18 @@ public class ManageObstacles : MonoBehaviour
 
         for (int i = 0; i < 8; i++) {
             if (AudioSpectrum.freqBands[i] >= trigggerValue) {
-                int spawnPos;
-
-                if(lastSpawn == 1) {
-                    spawnPos = 0;
-                } else {
-                    spawnPos = 1;
-                }
-
-                lastSpawn = spawnPos;
+                float camTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).y;
 
                 obstacleIndex = GetObstacleIndex(i);
 
                 GameObject obstacle = prefabs[obstacleIndex];
                 Vector3 obstaclePos = obstacle.transform.position;
 
-                yPosition = lastPosition == 0 ? cam.transform.position.y + 8 : lastPosition + obstacleOffset;
-                xPosition = GetXPosition(obstacleIndex, spawnPos);
+                yPosition = lastPosition == 0 ? camTop : lastPosition + obstacleOffset;
+                xPosition = GetXPosition(obstacleIndex, lastSpawn);
                 
-                if(yPosition < cam.transform.position.y + 8) {
-                    yPosition = cam.transform.position.y + 8;
+                if(yPosition < camTop) {
+                    yPosition = camTop;
                 }
 
                 Vector3 position = new Vector3(xPosition, yPosition, obstaclePos.z);
@@ -83,13 +75,19 @@ public class ManageObstacles : MonoBehaviour
         float[] acEdges = new float[2] { -1.774f, 1.774f };
         float[] windowEdges = new float[2] { -2.592f, 2.592f };
         float cactusPos = (Mathf.Round(Random.Range(-1.59f, 1.59f) * 100)) / 100.0f;
-        
-        switch(index) {
+
+        void SetLastSpawn(int spawn) {
+            lastSpawn = spawn == 1 ? 0 : 1;
+        }
+
+        switch (index) {
             case 0:
+                SetLastSpawn(side);
                 return acEdges[side];
             case 1:
                 return cactusPos;
             case 2:
+                SetLastSpawn(side);
                 return windowEdges[side];
             default:
                 return 0;

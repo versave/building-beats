@@ -293,7 +293,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Red Hot Chili Peppers - Otherside (Gamper & Dadoni Remix) '
+  m_Text: Skyrim theme song
 --- !u!222 &106937938
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e12715ffa53d0a49a624f601cb3420a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beat: {fileID: 8300000, guid: bb7ddc548b97a0d49b0d8e960752eff2, type: 3}
+  beat: {fileID: 8300000, guid: c04012783b82f3f41be5aa2668c22223, type: 3}
   selected: 0
   beatIndex: 1
 --- !u!114 &150652626
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e12715ffa53d0a49a624f601cb3420a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beat: {fileID: 8300000, guid: c04012783b82f3f41be5aa2668c22223, type: 3}
+  beat: {fileID: 8300000, guid: 838f4503dd5b6cc438038a3d485469dd, type: 3}
   selected: 1
   beatIndex: 0
 --- !u!114 &475489960 stripped
@@ -1496,7 +1496,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ice cube today was a good day
+  m_Text: Red Hot Chili Peppers - Otherside (Gamper & Dadoni Remix)
 --- !u!222 &1330106785
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2853,13 +2853,13 @@ PrefabInstance:
     - target: {fileID: 4929195402446197370, guid: ebb53e8274953ee49ad3f8723206a301,
         type: 3}
       propertyPath: godMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4929195402446197370, guid: ebb53e8274953ee49ad3f8723206a301,
         type: 3}
       propertyPath: defaultClip
       value: 
-      objectReference: {fileID: 8300000, guid: c04012783b82f3f41be5aa2668c22223, type: 3}
+      objectReference: {fileID: 8300000, guid: 838f4503dd5b6cc438038a3d485469dd, type: 3}
     - target: {fileID: 4929195402446197371, guid: ebb53e8274953ee49ad3f8723206a301,
         type: 3}
       propertyPath: m_LocalPosition.x
