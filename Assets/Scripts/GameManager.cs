@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public AudioSource audioContainer;
     
     public static int? selectedBeatIndex = 0;
+    public static bool playIntro = true;
     public bool godMode;
 
     private void Awake() {
