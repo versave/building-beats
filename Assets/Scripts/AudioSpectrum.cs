@@ -5,6 +5,8 @@ public class AudioSpectrum : MonoBehaviour
 {
     AudioSource audioSource;
 
+    bool playAudio = true;
+
     public static float[] freqBands = new float[8];
     public static float[] audioBand = new float[8];
 
@@ -16,13 +18,17 @@ public class AudioSpectrum : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = GameManager.songClip;
-
-        audioSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(GameManager.gameIsPlaying && playAudio) {
+            audioSource.Play();
+            playAudio = false;
+        }
+
         GetSpectrumAudioSource();
         CreateFreqBands();
         CreateAudioBands();

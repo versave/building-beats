@@ -26,7 +26,8 @@ public class CameraScript : MonoBehaviour {
 
     void FixedUpdate() {
         // Pause before start animation
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-start")) return;
+        if (!GameManager.gameIsPlaying) return;
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("player-start")) return;
 
         FollowPlayer();
     }

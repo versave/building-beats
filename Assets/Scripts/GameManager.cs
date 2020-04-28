@@ -11,7 +11,10 @@ public class GameManager : MonoBehaviour
     
     public static int? selectedBeatIndex = 1;
     public static bool playIntro = true;
+    public static bool gameIsPlaying = false;
     public bool godMode;
+
+    int deaths;
 
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
@@ -21,11 +24,16 @@ public class GameManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Game Manager").Length > 1) {
             Destroy(GameObject.FindGameObjectsWithTag("Game Manager")[0]);
         }
+
+        if(deaths == 0) {
+            gameIsPlaying = false;
+        }
     }
 
     private void Update() {
         if(Player.gameOver && !godMode) {
             Player.gameOver = false;
+            deaths++;
 
             LoadScene(1);
         }    
@@ -53,5 +61,9 @@ public class GameManager : MonoBehaviour
 
     public void OpenFileBrowser() {
         StartCoroutine(GetComponent<SongBrowser>().ShowLoadDialogCoroutine());
+    }
+
+    public void StartGame() {
+        gameIsPlaying = true;
     }
 }

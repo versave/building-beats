@@ -16,6 +16,12 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.gameIsPlaying) {
+            return;
+        } else if(GameManager.gameIsPlaying && !animator.GetBool("Start")) {
+            animator.SetBool("Start", true);
+        }
+
         // Pause before start animation
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-start")) return;
         
