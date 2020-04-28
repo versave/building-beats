@@ -4,21 +4,21 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator animator;
+    public Sprite deathState;
 
     public float xSpeed;
     public float ySpeed;
     public float jumpHeight;
 
-    public static bool gameOver = false;
-
     bool jump = false;
     bool flip = true;
 
+
     void FixedUpdate()
     {
-        if (!GameManager.gameIsPlaying) {
+        if (!GameManager.initialPlay || GameManager.gameOver) {
             return;
-        } else if(GameManager.gameIsPlaying && !animator.GetBool("Start")) {
+        } else if(!animator.GetBool("Start")) {
             animator.SetBool("Start", true);
         }
 
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if(collision.collider.CompareTag("Obstacle")) {
-            gameOver = true;
+            GameManager.gameOver = true;
         }
     }
 
@@ -77,5 +77,13 @@ public class Player : MonoBehaviour
 
     void MovePlayer(float x, float y) {
         rb.MovePosition(rb.position + new Vector2(x, y) * Time.fixedDeltaTime);
+    }
+
+    public void PlayerFall() {
+        animator.GetComponent<SpriteRenderer>().sprite = deathState;
+        animator.GetComponent<Animator>().enabled = false;
+
+        rb.gravityScale = 1;
+        rb.constraints = RigidbodyConstraints2D.None;
     }
 }

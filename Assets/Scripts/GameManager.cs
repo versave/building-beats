@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     public static AudioClip songClip;
     public AudioClip defaultClip;
     public AudioSource audioContainer;
+    public GameObject player;
     
     public static int? selectedBeatIndex = 1;
     public static bool playIntro = true;
-    public static bool gameIsPlaying = false;
+    public static bool initialPlay = false;
+    public static bool gameOver = false;
     public bool godMode;
 
     int deaths;
@@ -26,17 +28,24 @@ public class GameManager : MonoBehaviour
         }
 
         if(deaths == 0) {
-            gameIsPlaying = false;
+            initialPlay = false;
         }
     }
 
     private void Update() {
-        if(Player.gameOver && !godMode) {
-            Player.gameOver = false;
-            deaths++;
+        if(!player) {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
 
-            LoadScene(1);
-        }    
+        if (gameOver && !godMode) {
+            deaths++;   
+            GameOver();
+        }
+    }
+
+    void GameOver() {
+        player.GetComponent<Player>().PlayerFall();
+        AudioSpectrum.SetVolume(0.2f);
     }
 
     public void LoadScene(int index) {
@@ -64,6 +73,16 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame() {
-        gameIsPlaying = true;
+        initialPlay = true;
+    }
+
+    public void BackToMenu() {
+        gameOver = false;
+        LoadScene(0);
+    }
+
+    public void RestartGame() {
+        gameOver = false;
+        LoadScene(1);
     }
 }

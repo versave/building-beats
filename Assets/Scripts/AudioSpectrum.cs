@@ -3,7 +3,7 @@
 [RequireComponent (typeof (AudioSource))]
 public class AudioSpectrum : MonoBehaviour
 {
-    AudioSource audioSource;
+    public static AudioSource audioSource;
 
     bool playAudio = true;
 
@@ -24,10 +24,11 @@ public class AudioSpectrum : MonoBehaviour
     void Update()
     {
 
-        if(GameManager.gameIsPlaying && playAudio) {
+        if(!GameManager.initialPlay) return;
+        if(GameManager.initialPlay && playAudio) {
             audioSource.Play();
             playAudio = false;
-        }
+        } 
 
         GetSpectrumAudioSource();
         CreateFreqBands();
@@ -71,5 +72,9 @@ public class AudioSpectrum : MonoBehaviour
 
     public void StopAudio() {
         audioSource.Stop();
+    }
+
+    public static void SetVolume(float volume) {
+        audioSource.volume = volume;
     }
 }
