@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public AudioClip defaultClip;
     public AudioSource audioContainer;
     
-    public static int? selectedBeatIndex = 0;
+    public static int? selectedBeatIndex = 1;
     public static bool playIntro = true;
     public bool godMode;
 

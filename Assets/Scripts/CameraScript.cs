@@ -3,6 +3,8 @@
 public class CameraScript : MonoBehaviour {
     public Transform target;
     public Transform[] backgrounds;
+
+    public Animator animator;
     
     Transform highestEl;
     Transform lowestEl;
@@ -10,7 +12,7 @@ public class CameraScript : MonoBehaviour {
     public Vector3 camOffset;
     public float smoothSpeed;
     
-    const float bgTravelDistance = 12.15f;
+    const float bgTravelDistance = 11.84f;
 
     // Start is called before the first frame update
     void Start() {
@@ -23,6 +25,9 @@ public class CameraScript : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        // Pause before start animation
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-start")) return;
+
         FollowPlayer();
     }
 

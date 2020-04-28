@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beat: {fileID: 8300000, guid: c04012783b82f3f41be5aa2668c22223, type: 3}
-  selected: 0
+  selected: 1
   beatIndex: 1
 --- !u!114 &150652626
 MonoBehaviour:
@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.9607843, b: 0.9607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9607843, b: 0.9607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -918,7 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beat: {fileID: 8300000, guid: 838f4503dd5b6cc438038a3d485469dd, type: 3}
-  selected: 1
+  selected: 0
   beatIndex: 0
 --- !u!114 &475489960 stripped
 MonoBehaviour:
@@ -3323,7 +3323,7 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultClip
       value: 
-      objectReference: {fileID: 8300000, guid: 838f4503dd5b6cc438038a3d485469dd, type: 3}
+      objectReference: {fileID: 8300000, guid: c04012783b82f3f41be5aa2668c22223, type: 3}
     - target: {fileID: 4929195402446197371, guid: ebb53e8274953ee49ad3f8723206a301,
         type: 3}
       propertyPath: m_LocalPosition.x

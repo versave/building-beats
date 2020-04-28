@@ -3,6 +3,7 @@
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Animator animator;
 
     public float xSpeed;
     public float ySpeed;
@@ -11,19 +12,29 @@ public class Player : MonoBehaviour
     public static bool gameOver = false;
 
     bool jump = false;
-
-    void Update() {
-        if (Input.touchCount > 0 || Input.GetKeyDown("space")) {
-            jump = true;
-        }
-    }
+    bool flip = true;
 
     void FixedUpdate()
     {
+        // Pause before start animation
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-start")) return;
+        
         if (jump) {
             MovePlayer(xSpeed, ySpeed + jumpHeight);
+            animator.SetBool("Jump", true);
+
+            if(flip) {
+                transform.Rotate(0, 180, 180);
+                flip = false;
+            }
         } else {
             MovePlayer(0, ySpeed);
+            animator.SetBool("Jump", false);
+            flip = true;
+        }
+        
+        if (Input.touchCount > 0 || Input.GetKey(KeyCode.Space)) {
+            jump = true;
         }
     }
 
@@ -43,11 +54,12 @@ public class Player : MonoBehaviour
         if (jump) collision.isTrigger = false;
 
         if (collision.CompareTag("Left") && jump) {
+            jump = false;
             xSpeed = Mathf.Abs(xSpeed);
-            jump = false;
+            
         } else if (collision.CompareTag("Right") && jump) {
-            xSpeed = -Mathf.Abs(xSpeed);
             jump = false;
+            xSpeed = -Mathf.Abs(xSpeed);
         }
     }
 
