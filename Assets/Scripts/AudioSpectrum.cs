@@ -28,7 +28,9 @@ public class AudioSpectrum : MonoBehaviour
         if(GameManager.initialPlay && playAudio) {
             audioSource.Play();
             playAudio = false;
-        } 
+        }
+        
+
 
         GetSpectrumAudioSource();
         CreateFreqBands();
