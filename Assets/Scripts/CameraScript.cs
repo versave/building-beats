@@ -12,7 +12,7 @@ public class CameraScript : MonoBehaviour {
     public Vector3 camOffset;
     public float smoothSpeed;
     
-    const float bgTravelDistance = 11.84f;
+    const float bgTravelDistance = 11.98f;
 
     // Start is called before the first frame update
     void Start() {
