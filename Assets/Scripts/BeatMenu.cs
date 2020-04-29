@@ -11,10 +11,10 @@ public class BeatMenu : MonoBehaviour
             BeatScript beatScript = beat.GetComponent<BeatScript>();
 
             if(beatScript.beatIndex == loadedBeatIndex) {
-                beat.GetComponent<Image>().color = new Color(0, 207, 241, 255);
+                beat.GetComponent<Image>().sprite = beatScript.selectedSprite;
                 beat.GetComponent<BeatScript>().selected = true;
             } else {
-                beat.GetComponent<Image>().color = Color.white;
+                beat.GetComponent<Image>().sprite = beatScript.defaultSprite;
                 beat.GetComponent<BeatScript>().selected = false;
             }
         }
@@ -24,7 +24,7 @@ public class BeatMenu : MonoBehaviour
         foreach (GameObject beat in GameObject.FindGameObjectsWithTag("Beat Button")) {
             BeatScript beatScript = beat.GetComponent<BeatScript>();
 
-            beat.GetComponent<Image>().color = Color.white;
+            beat.GetComponent<Image>().sprite = beatScript.defaultSprite;
             beat.GetComponent<BeatScript>().selected = false;
         }
     }

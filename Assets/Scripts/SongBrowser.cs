@@ -45,6 +45,8 @@ public class SongBrowser : MonoBehaviour {
 
         // Coroutine example
         //StartCoroutine(ShowLoadDialogCoroutine());
+
+        FileBrowser.SingleClickMode = true;
     }
 
     public IEnumerator ShowLoadDialogCoroutine() {

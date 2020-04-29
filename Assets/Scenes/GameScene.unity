@@ -1622,7 +1622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae8bd1483a6c504687e8e975ee1fadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleOffset: 4.25
+  obstacleOffset: 4.3
   trigggerValue: 0.6
   spawnOffset: -8
   prefabs:
