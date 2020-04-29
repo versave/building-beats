@@ -44,8 +44,14 @@ public class GameManager : MonoBehaviour
     }
 
     void GameOver() {
+        float volume = AudioSpectrum.audioSource.volume;
+
         player.GetComponent<Player>().PlayerFall();
-        AudioSpectrum.SetVolume(0.2f);
+        if(volume > 0) FadeVolume(volume, 0.001f);
+    }
+
+    void FadeVolume(float volume, float value) {
+        AudioSpectrum.SetVolume(volume - value);
     }
 
     public void LoadScene(int index) {
