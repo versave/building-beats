@@ -3,6 +3,7 @@
 public class CameraScript : MonoBehaviour {
     public Transform target;
     public Transform[] backgrounds;
+    public Transform tip;
 
     public Animator animator;
     
@@ -13,6 +14,11 @@ public class CameraScript : MonoBehaviour {
     public float smoothSpeed;
     
     const float bgTravelDistance = 11.98f;
+    
+    public static float highestBuildingY;
+    public static float tipY;
+
+    bool editCam = true;
 
     // Start is called before the first frame update
     void Start() {
@@ -21,6 +27,13 @@ public class CameraScript : MonoBehaviour {
     }
 
     void Update() {
+        if (Player.topReached && editCam) {
+            FinishView();
+        }
+
+        if (GameManager.gameFinish) return;
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle-simple")) return;
+
         InfiniteBg();
     }
 
@@ -30,6 +43,13 @@ public class CameraScript : MonoBehaviour {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("player-start")) return;
 
         FollowPlayer();
+    }
+
+    void FinishView() {
+        camOffset.x = 2;
+        camOffset.y = 2;
+        smoothSpeed /= 2;
+        editCam = false;
     }
 
     void FollowPlayer() {
@@ -45,6 +65,8 @@ public class CameraScript : MonoBehaviour {
         for (int i = 0; i <= 2; i++) {
             if (backgrounds[i].transform.position.y > highestEl.transform.position.y) {
                 highestEl = backgrounds[i];
+
+                highestBuildingY = highestEl.position.y;
             }
 
             if (backgrounds[i].transform.position.y < lowestEl.transform.position.y) {
@@ -54,6 +76,8 @@ public class CameraScript : MonoBehaviour {
 
         if (transform.position.y > highestEl.transform.position.y - bgTravelDistance) {
             lowestEl.position = new Vector3(backgrounds[0].position.x, highestEl.position.y + bgTravelDistance, backgrounds[0].position.z);
+            tip.position = new Vector3(tip.position.x, highestEl.position.y + bgTravelDistance - 4.84f, tip.position.z);
+            tipY = tip.position.y;
         }
     }
 }

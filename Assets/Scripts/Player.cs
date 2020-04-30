@@ -9,13 +9,21 @@ public class Player : MonoBehaviour
     public float xSpeed;
     public float ySpeed;
     public float jumpHeight;
+    public float leftFinishPos;
+    public float RightFinishPos;
 
     bool jump = false;
     bool flip = true;
+    public static bool topReached = false;
 
 
     void FixedUpdate()
     {
+        if (GameManager.gameFinish && !jump && transform.position.y > CameraScript.tipY - 5) {
+            PlayFinishAnimation();
+            return;
+        }
+
         if (!GameManager.initialPlay || GameManager.gameOver) {
             return;
         } else if(!animator.GetBool("Start")) {
@@ -24,7 +32,33 @@ public class Player : MonoBehaviour
 
         // Pause before start animation
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-start")) return;
-        
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle-simple")) return;
+        ControlPlayer();
+    }
+
+    void PlayFinishAnimation() {
+        animator.SetBool("Jump", false);
+
+        if (transform.position.y <= CameraScript.tipY + 0.27) {
+            MovePlayer(0, ySpeed - 2);
+        } else {
+            if (transform.position.y > CameraScript.tipY && !topReached) {
+                transform.Rotate(transform.rotation.x, transform.rotation.y, 90);
+                topReached = true;
+            }
+
+            if (xSpeed > 0 && transform.position.x > leftFinishPos) {
+                MovePlayer(-xSpeed + 7, 0);
+            } else if (xSpeed < 0 && transform.position.x < RightFinishPos) {
+                MovePlayer(-xSpeed - 7, 0);
+            } else {
+                animator.SetBool("Finish", true);
+                transform.position = new Vector3(transform.position.x, CameraScript.tipY + 0.3f, transform.position.z);
+            }
+        }
+    }
+
+    void ControlPlayer() {
         if (jump) {
             MovePlayer(xSpeed, ySpeed + jumpHeight);
             animator.SetBool("Jump", true);

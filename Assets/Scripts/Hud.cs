@@ -20,9 +20,16 @@ public class Hud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Open game over menu
         if (GameManager.gameOver && openMenu) {
             gameOverMenu.SetActive(true);
             timeText.text = SecondsToTime(AudioSpectrum.audioSource.time);
+            openMenu = false;
+        }
+
+        // Open finish menu
+        if (GameManager.gameFinish && Player.topReached && openMenu) {
+            gameOverMenu.SetActive(true);
             openMenu = false;
         }
     }

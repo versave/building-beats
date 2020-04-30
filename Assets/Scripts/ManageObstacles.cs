@@ -24,6 +24,11 @@ public class ManageObstacles : MonoBehaviour
     {
         camY = cam.transform.position.y;
 
+        if(GameManager.gameFinish) {
+            DestroyObstacles();
+            return;
+        }
+
         if(posY == 0 || camY > posY + spawnOffset) {
             CreateObstacles();
         }
@@ -59,7 +64,7 @@ public class ManageObstacles : MonoBehaviour
         }
     }
 
-    private float GetXPosition(GameObject obstacle, int index, int side) {
+    float GetXPosition(GameObject obstacle, int index, int side) {
         float lowPos = side == 0 ? obstacle.transform.position.x : -obstacle.transform.position.x;
         float midPos = (Mathf.Round(Random.Range(-1.662f, 1.662f) * 100)) / 100.0f;
         float highPos = side == 0 ? obstacle.transform.position.x : -obstacle.transform.position.x;
@@ -79,11 +84,21 @@ public class ManageObstacles : MonoBehaviour
         }
     }
 
-    private Quaternion GetRotation(int index, int side) {
+    Quaternion GetRotation(int index, int side) {
         if (index > 2 && index <= 5) {
             return Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f));
         } else {
             return side == 0 ? Quaternion.Euler(0.0f, 0.0f, 0.0f) : Quaternion.Euler(0.0f, 180f, 0.0f);
+        }
+    }
+
+    void DestroyObstacles() {
+        foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag("Obstacle")) {
+            float camTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).y;
+
+            if (obstacle.transform.position.y > CameraScript.tipY || obstacle.transform.position.y > camTop + 0.5f) {
+                Destroy(obstacle);
+            }
         }
     }
 }

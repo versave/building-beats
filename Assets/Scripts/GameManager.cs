@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
     public AudioSource audioContainer;
     public GameObject player;
     
-    public static int? selectedBeatIndex = 1;
+    public static int? selectedBeatIndex = 3;
     public static bool playIntro = true;
     public static bool initialPlay = false;
     public static bool gameOver = false;
+    public static bool gameFinish = false;
+
     public bool godMode;
 
     int deaths;
@@ -40,6 +42,10 @@ public class GameManager : MonoBehaviour
         if (gameOver && !godMode) {
             deaths++;   
             GameOver();
+        }
+
+        if(initialPlay && !AudioSpectrum.audioSource.isPlaying && AudioSpectrum.audioSource.time > 0) {
+            gameFinish = true;
         }
     }
 
@@ -83,12 +89,18 @@ public class GameManager : MonoBehaviour
     }
 
     public void BackToMenu() {
-        gameOver = false;
+        ResetGame();
         LoadScene(0);
     }
 
     public void RestartGame() {
-        gameOver = false;
+        ResetGame();
         LoadScene(1);
+    }
+
+    void ResetGame() {
+        gameOver = false;
+        gameFinish = false;
+        Player.topReached = false;
     }
 }
