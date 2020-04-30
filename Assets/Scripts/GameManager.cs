@@ -15,10 +15,11 @@ public class GameManager : MonoBehaviour
     public static bool initialPlay = false;
     public static bool gameOver = false;
     public static bool gameFinish = false;
+    public static bool deathsIncremented = false;
+    
+    public static int deaths;
 
     public bool godMode;
-
-    int deaths;
 
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
@@ -28,23 +29,23 @@ public class GameManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Game Manager").Length > 1) {
             Destroy(GameObject.FindGameObjectsWithTag("Game Manager")[0]);
         }
-
-        if(deaths == 0) {
-            initialPlay = false;
-        }
     }
 
     private void Update() {
-        if(!player) {
+        if (!player) {
             player = GameObject.FindGameObjectWithTag("Player");
         }
 
         if (gameOver && !godMode) {
-            deaths++;   
+            if(!deathsIncremented) {
+                deaths++;
+                deathsIncremented = true;
+            }
+
             GameOver();
         }
 
-        if(initialPlay && !AudioSpectrum.audioSource.isPlaying && AudioSpectrum.audioSource.time > 0) {
+        if(initialPlay && !gameFinish && !AudioSpectrum.audioSource.isPlaying && AudioSpectrum.audioSource.time > 0) {
             gameFinish = true;
         }
     }
@@ -89,6 +90,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void BackToMenu() {
+        initialPlay = false;
+        deaths = 0;
+
         ResetGame();
         LoadScene(0);
     }
@@ -98,9 +102,17 @@ public class GameManager : MonoBehaviour
         LoadScene(1);
     }
 
+    public void RefreshGame() {
+        deaths = 0;
+
+        ResetGame();
+        LoadScene(1);
+    }
+
     void ResetGame() {
+        Player.topReached = false;
         gameOver = false;
         gameFinish = false;
-        Player.topReached = false;
+        deathsIncremented = false;
     }
 }
