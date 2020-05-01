@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public AudioSource audioContainer;
     public GameObject player;
     
-    public static int? selectedBeatIndex = 3;
+    public static int? selectedBeatIndex = 1;
     public static bool playIntro = true;
     public static bool initialPlay = false;
     public static bool gameOver = false;

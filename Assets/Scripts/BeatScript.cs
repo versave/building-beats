@@ -6,7 +6,6 @@ public class BeatScript : MonoBehaviour
     public AudioClip beat;
     public Sprite defaultSprite;
     public Sprite selectedSprite;
-
     public bool selected;
     public int beatIndex;
 
