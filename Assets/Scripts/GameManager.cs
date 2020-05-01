@@ -8,18 +8,17 @@ public class GameManager : MonoBehaviour
     public static AudioClip songClip;
     public AudioClip defaultClip;
     public AudioSource audioContainer;
-    public GameObject player;
+    GameObject player;
     
     public static int? selectedBeatIndex = 1;
+    public static int deaths;
     public static bool playIntro = true;
     public static bool initialPlay = false;
     public static bool gameOver = false;
     public static bool gameFinish = false;
     public static bool deathsIncremented = false;
-    
-    public static int deaths;
-
     public bool godMode;
+    
 
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);

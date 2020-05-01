@@ -5,13 +5,13 @@ public class AudioSpectrum : MonoBehaviour
 {
     public static AudioSource audioSource;
 
-    bool playAudio = true;
-
     public static float[] freqBands = new float[8];
     public static float[] audioBand = new float[8];
 
     float[] samples = new float[512];
     float[] freqBandHighest = new float[8];
+    
+    bool playAudio = true;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +30,6 @@ public class AudioSpectrum : MonoBehaviour
             playAudio = false;
         }
         
-
-
         GetSpectrumAudioSource();
         CreateFreqBands();
         CreateAudioBands();

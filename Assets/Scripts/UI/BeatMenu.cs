@@ -17,11 +17,14 @@ public class BeatMenu : MonoBehaviour
     }
 
     public static void ResetBeats() {
-        foreach (GameObject beat in GameObject.FindGameObjectsWithTag("Beat Button")) {
-            BeatScript beatScript = beat.GetComponent<BeatScript>();
+        GameObject[] beats = GameObject.FindGameObjectsWithTag("Beat Button");
+        int length = beats.Length;
 
-            beat.GetComponent<Image>().sprite = beatScript.defaultSprite;
-            beat.GetComponent<BeatScript>().selected = false;
+        for (int index = 0; index < length; index++) {
+            BeatScript beatScript = beats[index].GetComponent<BeatScript>();
+
+            beats[index].GetComponent<Image>().sprite = beatScript.defaultSprite;
+            beats[index].GetComponent<BeatScript>().selected = false;
         }
     }
 

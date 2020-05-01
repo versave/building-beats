@@ -12,6 +12,8 @@ public class ManageObstacles : MonoBehaviour
     private float lastPosition = 0;
 
     public GameObject[] prefabs;
+    public GameObject obstaclesContainer;
+    
     private Camera cam;
 
     void Start() {
@@ -56,7 +58,8 @@ public class ManageObstacles : MonoBehaviour
 
                 Vector3 position = new Vector3(xPosition, yPosition, obstaclePos.z);
 
-                Instantiate(obstacle, position, rotation);
+                GameObject obstacleInstance = Instantiate(obstacle, position, rotation);
+                obstacleInstance.transform.SetParent(obstaclesContainer.transform);
                 
                 posY = position.y;
                 lastPosition = yPosition;
