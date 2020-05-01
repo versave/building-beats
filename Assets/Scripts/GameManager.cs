@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static AudioClip songClip;
     public AudioClip defaultClip;
-    public AudioSource audioContainer;
     GameObject player;
     
     public static int? selectedBeatIndex = 1;

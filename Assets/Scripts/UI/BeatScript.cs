@@ -14,9 +14,9 @@ public class BeatScript : MonoBehaviour
         GameManager.selectedBeatIndex = beatIndex;
 
         GameObject[] beatButtons = GameObject.FindGameObjectsWithTag("Beat Button");
-        int length = beatButtons.Length;
+        int buttonsLength = beatButtons.Length;
 
-        for(int index = 0; index < length; index++) {
+        for(int index = 0; index < buttonsLength; index++) {
             beatButtons[index].GetComponent<Image>().sprite = defaultSprite;
             beatButtons[index].GetComponent<BeatScript>().selected = false;
         }

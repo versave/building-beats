@@ -2,23 +2,25 @@
 
 public class ManageObstacles : MonoBehaviour
 {
+    // Difficulty settings
+    [Header("Difficulty Settings")]
+
     public float obstacleOffset;
     public float trigggerValue;
     public float spawnOffset;
 
-    private int lastSpawn = 0;
-    private float posY = 0;
-    private float camY;
-    private float lastPosition = 0;
+    int lastSpawn = 0;
+    float posY = 0;
+    float camY;
+    float lastPosition = 0;
 
     public GameObject[] prefabs;
     public GameObject obstaclesContainer;
     
-    private Camera cam;
+    Camera cam;
 
     void Start() {
         cam = Camera.main;
-        camY = cam.transform.position.y;
     }
 
     // Update is called once per frame
@@ -57,10 +59,9 @@ public class ManageObstacles : MonoBehaviour
                 }
 
                 Vector3 position = new Vector3(xPosition, yPosition, obstaclePos.z);
-
                 GameObject obstacleInstance = Instantiate(obstacle, position, rotation);
+
                 obstacleInstance.transform.SetParent(obstaclesContainer.transform);
-                
                 posY = position.y;
                 lastPosition = yPosition;
             }
@@ -96,11 +97,14 @@ public class ManageObstacles : MonoBehaviour
     }
 
     void DestroyObstacles() {
-        foreach(GameObject obstacle in GameObject.FindGameObjectsWithTag("Obstacle")) {
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        int obstaclesLength = obstacles.Length;
+
+        for(int index = 0; index < obstaclesLength; index++) {
             float camTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).y;
 
-            if (obstacle.transform.position.y > CameraScript.tipY || obstacle.transform.position.y > camTop + 0.5f) {
-                Destroy(obstacle);
+            if (obstacles[index].transform.position.y > CameraScript.tipY || obstacles[index].transform.position.y > camTop + 0.5f) {
+                Destroy(obstacles[index]);
             }
         }
     }

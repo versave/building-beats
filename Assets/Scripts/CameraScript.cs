@@ -14,11 +14,10 @@ public class CameraScript : MonoBehaviour {
     public float smoothSpeed;
     
     const float bgTravelDistance = 11.98f;
+    bool editCam = true;
     
     public static float highestBuildingY;
     public static float tipY;
-
-    bool editCam = true;
 
     // Start is called before the first frame update
     void Start() {
@@ -31,8 +30,8 @@ public class CameraScript : MonoBehaviour {
             FinishView();
         }
 
-        if (GameManager.gameFinish) return;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle-simple")) return;
+        // Stop infinite background after player wins
+        if (GameManager.gameFinish || animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle-simple")) return;
 
         InfiniteBg();
     }

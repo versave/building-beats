@@ -18,9 +18,9 @@ public class BeatMenu : MonoBehaviour
 
     public static void ResetBeats() {
         GameObject[] beats = GameObject.FindGameObjectsWithTag("Beat Button");
-        int length = beats.Length;
+        int beatsLength = beats.Length;
 
-        for (int index = 0; index < length; index++) {
+        for (int index = 0; index < beatsLength; index++) {
             BeatScript beatScript = beats[index].GetComponent<BeatScript>();
 
             beats[index].GetComponent<Image>().sprite = beatScript.defaultSprite;
@@ -33,10 +33,10 @@ public class BeatMenu : MonoBehaviour
         AudioClip[] beats = Resources.LoadAll<AudioClip>("Music");
         RectTransform templateRect = beatTemplate.GetComponent<RectTransform>();
         float templateHeight = templateRect.rect.height;
-        int length = beats.Length;
+        int beatsLength = beats.Length;
         float lastY = 0;
 
-        for (int index = 0; index < length; index++) {
+        for (int index = 0; index < beatsLength; index++) {
             float yPosition = index > 0 ? lastY - templateHeight + beatDistanceAddition : beatDistance;
             lastY = yPosition;
 
