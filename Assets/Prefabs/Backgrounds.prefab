@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7014608744192092553}
   m_Layer: 0
-  m_Name: Bg-test
+  m_Name: Backgrounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,10 +84,10 @@ Transform:
   m_LocalPosition: {x: -4.5558367, y: 0, z: -1361.6641}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7014608744366619620}
   - {fileID: 7014608742516340730}
   - {fileID: 1570285631099767628}
   - {fileID: 1570285630862763065}
+  - {fileID: 7014608744366619620}
   - {fileID: 4759717474444682376}
   - {fileID: 4023478426045072755}
   m_Father: {fileID: 0}
@@ -121,7 +121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7014608744192092553}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7361453713160533644
 GameObject:
@@ -230,7 +230,7 @@ PrefabInstance:
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
@@ -307,7 +307,7 @@ PrefabInstance:
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
@@ -389,7 +389,7 @@ PrefabInstance:
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8399814784668393836, guid: 5599ef478abed5848ad69321740f8fe3,
         type: 3}
