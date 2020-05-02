@@ -3,6 +3,8 @@
 public class CameraScript : MonoBehaviour {
     public Transform target;
     public Transform[] backgrounds;
+    public Transform leftCollider;
+    public Transform rightCollider;
     public Transform tip;
 
     public Animator animator;
@@ -77,6 +79,9 @@ public class CameraScript : MonoBehaviour {
             lowestEl.position = new Vector3(backgrounds[0].position.x, highestEl.position.y + bgTravelDistance, backgrounds[0].position.z);
             tip.position = new Vector3(tip.position.x, highestEl.position.y + bgTravelDistance - 4.84f, tip.position.z);
             tipY = tip.position.y;
+
+            leftCollider.position = new Vector3(leftCollider.position.x, leftCollider.position.y + bgTravelDistance, leftCollider.position.z);
+            rightCollider.position = new Vector3(rightCollider.position.x, rightCollider.position.y + bgTravelDistance, rightCollider.position.z);
         }
     }
 }
