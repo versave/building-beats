@@ -14,7 +14,7 @@ public class Hud : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameManager.initialPlay) {
+        if(!GameManager.initialPlay) {
             startMenu.SetActive(false);
         }
     }

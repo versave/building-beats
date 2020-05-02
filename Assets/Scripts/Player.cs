@@ -12,27 +12,30 @@ public class Player : MonoBehaviour
     public float leftFinishPos;
     public float RightFinishPos;
 
+    public static bool topReached = false;
+    
     bool jump = false;
     bool flip = true;
-    public static bool topReached = false;
-
 
     void FixedUpdate()
     {
-        if (GameManager.gameFinish && !jump && transform.position.y > CameraScript.tipY - 5) {
+        bool gameHasFinished = GameManager.gameFinish && !jump && transform.position.y > CameraScript.tipY - 5;
+        bool startEndAnimsRunning = AnimationRunning("player-start") || AnimationRunning("player-idle-simple");
+
+        if (gameHasFinished) {
             PlayFinishAnimation();
             return;
         }
 
-        if (!GameManager.initialPlay || GameManager.gameOver) {
+        // Disable controls on initial play and game over
+        if (GameManager.initialPlay || GameManager.gameOver) {
             return;
         } else if(!animator.GetBool("Start")) {
             animator.SetBool("Start", true);
         }
 
-        // Pause before start animation
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-start")) return;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle-simple")) return;
+        // Disable controls at start and finish animations
+        if (startEndAnimsRunning) return;
         ControlPlayer();
     }
 
@@ -40,19 +43,24 @@ public class Player : MonoBehaviour
         animator.SetBool("Jump", false);
 
         if (transform.position.y <= CameraScript.tipY + 0.27) {
+            // Auto move to top
             MovePlayer(0, ySpeed - 2);
         } else {
+            // Reach top and rotate player
             if (transform.position.y > CameraScript.tipY && !topReached) {
                 transform.Rotate(transform.rotation.x, transform.rotation.y, 90);
                 topReached = true;
             }
 
+            // Move to finish position
             if (xSpeed > 0 && transform.position.x > leftFinishPos) {
                 MovePlayer(-xSpeed + 7, 0);
             } else if (xSpeed < 0 && transform.position.x < RightFinishPos) {
                 MovePlayer(-xSpeed - 7, 0);
             } else {
                 animator.SetBool("Finish", true);
+
+                // Readjust player position
                 transform.position = new Vector3(transform.position.x, CameraScript.tipY + 0.3f, transform.position.z);
             }
         }
@@ -78,12 +86,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Collision with obstacle
     void OnCollisionEnter2D(Collision2D collision) {
         if(collision.collider.CompareTag("Obstacle")) {
             GameManager.gameOver = true;
         }
     }
-
+    
     void OnCollisionExit2D(Collision2D collision) {
         if (collision.collider.CompareTag("Left") || collision.collider.CompareTag("Right")) {
             collision.collider.isTrigger = true;
@@ -111,6 +120,10 @@ public class Player : MonoBehaviour
 
     void MovePlayer(float x, float y) {
         rb.MovePosition(rb.position + new Vector2(x, y) * Time.fixedDeltaTime);
+    }
+
+    bool AnimationRunning(string animation) {
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(animation);
     }
 
     public void PlayerFall() {

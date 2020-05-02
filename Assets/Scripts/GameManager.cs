@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public static int? selectedBeatIndex = 1;
     public static int deaths;
     public static bool playIntro = true;
-    public static bool initialPlay = false;
+    public static bool initialPlay = true;
     public static bool gameOver = false;
     public static bool gameFinish = false;
     public static bool deathsIncremented = false;
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        if(initialPlay && !gameFinish && !AudioSpectrum.audioSource.isPlaying && AudioSpectrum.audioSource.time > 0) {
+        if(!initialPlay && !gameFinish && !AudioSpectrum.audioSource.isPlaying && AudioSpectrum.audioSource.time > 0) {
             gameFinish = true;
         }
     }
@@ -84,11 +84,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame() {
-        initialPlay = true;
+        initialPlay = false;
     }
 
     public void BackToMenu() {
-        initialPlay = false;
+        initialPlay = true;
         deaths = 0;
 
         ResetGame();

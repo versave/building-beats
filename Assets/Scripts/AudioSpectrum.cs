@@ -23,8 +23,8 @@ public class AudioSpectrum : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GameManager.initialPlay) return;
-        if(GameManager.initialPlay && playAudio) {
+        if(GameManager.initialPlay) return;
+        if(!GameManager.initialPlay && playAudio) {
             audioSource.Play();
             playAudio = false;
         }
