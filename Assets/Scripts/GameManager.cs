@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public AudioClip defaultClip;
     GameObject player;
     
-    public static int? selectedBeatIndex = 1;
+    public static int? selectedBeatIndex = 2;
     public static int deaths;
     public static bool playIntro = true;
     public static bool initialPlay = true;

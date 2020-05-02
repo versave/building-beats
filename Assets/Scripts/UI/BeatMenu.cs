@@ -36,6 +36,8 @@ public class BeatMenu : MonoBehaviour
         int beatsLength = beats.Length;
         float lastY = 0;
 
+        SizeBeatsBox(beatsLength);
+
         for (int index = 0; index < beatsLength; index++) {
             float yPosition = index > 0 ? lastY - templateHeight + beatDistanceAddition : beatDistance;
             lastY = yPosition;
@@ -52,5 +54,12 @@ public class BeatMenu : MonoBehaviour
 
             if (beatScript.selected) beat.GetComponent<Image>().sprite = beatScript.selectedSprite;
         }
+    }
+
+    void SizeBeatsBox(int multiplier) {
+        if (multiplier < 6) return;
+
+        RectTransform boxRect = beatsBox.GetComponent<RectTransform>();
+        boxRect.offsetMin = new Vector2(boxRect.offsetMin.x, 100 * (-multiplier + 5));
     }
 }
