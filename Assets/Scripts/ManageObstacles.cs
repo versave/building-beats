@@ -13,6 +13,7 @@ public class ManageObstacles : MonoBehaviour
     float posY = 0;
     float camY;
     float lastPosition = 0;
+    bool audioPlaying;
 
     public GameObject[] prefabs;
     public GameObject obstaclesContainer;
@@ -21,19 +22,23 @@ public class ManageObstacles : MonoBehaviour
 
     void Start() {
         cam = Camera.main;
+        lastSpawn = 0;
+        posY = 0;
+        lastPosition = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         camY = cam.transform.position.y;
+        audioPlaying = AudioSpectrum.audioSource.isPlaying;
 
-        if(GameManager.gameFinish) {
+        if (GameManager.gameFinish) {
             DestroyObstacles();
             return;
         }
 
-        if(posY == 0 || camY > posY + spawnOffset) {
+        if (audioPlaying && posY == 0 || audioPlaying && camY > posY + spawnOffset) {
             CreateObstacles();
         }
     }
@@ -106,6 +111,16 @@ public class ManageObstacles : MonoBehaviour
             if (obstacles[index].transform.position.y > CameraScript.tipY || obstacles[index].transform.position.y > camTop + 0.5f) {
                 Destroy(obstacles[index]);
             }
+        }
+    }
+
+    int GetRandomObject(int index) {
+        if (index <= 2) {
+            return Random.Range(0, 3);
+        } else if (index > 2 && index <= 5) {
+            return Random.Range(3, 6);
+        } else {
+            return Random.Range(6, 9);
         }
     }
 }

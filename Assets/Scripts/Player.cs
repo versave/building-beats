@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         bool gameHasFinished = GameManager.gameFinish && !jump && transform.position.y > CameraScript.tipY - 5;
-        bool startEndAnimsRunning = AnimationRunning("player-start") || AnimationRunning("player-idle-simple");
+        bool startEndAnimsRunning = AnimationRunning("player-start") || AnimationRunning("player-dance");
 
         if (gameHasFinished) {
             PlayFinishAnimation();

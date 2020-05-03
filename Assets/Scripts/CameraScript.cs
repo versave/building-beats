@@ -33,7 +33,7 @@ public class CameraScript : MonoBehaviour {
         }
 
         // Stop infinite background after player wins
-        if (GameManager.gameFinish || animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle-simple")) return;
+        if (GameManager.gameFinish || animator.GetCurrentAnimatorStateInfo(0).IsName("player-dance")) return;
 
         InfiniteBg();
     }

@@ -8,8 +8,8 @@ public class AudioSpectrum : MonoBehaviour
     public static float[] freqBands = new float[8];
     public static float[] audioBand = new float[8];
 
-    float[] samples = new float[512];
-    float[] freqBandHighest = new float[8];
+    readonly float[] samples = new float[512];
+    readonly float[] freqBandHighest = new float[8];
     
     bool playAudio = true;
 
