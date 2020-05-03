@@ -108,7 +108,7 @@ public class ManageObstacles : MonoBehaviour
         for(int index = 0; index < obstaclesLength; index++) {
             float camTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).y;
 
-            if (obstacles[index].transform.position.y > CameraScript.tipY || obstacles[index].transform.position.y > camTop + 0.5f) {
+            if (obstacles[index].transform.position.y > Backgrounds.tipY || obstacles[index].transform.position.y > camTop + 0.5f) {
                 Destroy(obstacles[index]);
             }
         }

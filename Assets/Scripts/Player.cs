@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        bool gameHasFinished = GameManager.gameFinish && !jump && transform.position.y > CameraScript.tipY - 5;
+        bool gameHasFinished = GameManager.gameFinish && !jump && transform.position.y > Backgrounds.tipY - 5;
         bool startEndAnimsRunning = AnimationRunning("player-start") || AnimationRunning("player-dance");
 
         if (gameHasFinished) {
@@ -42,12 +42,12 @@ public class Player : MonoBehaviour
     void PlayFinishAnimation() {
         animator.SetBool("Jump", false);
 
-        if (transform.position.y <= CameraScript.tipY + 0.27) {
+        if (transform.position.y <= Backgrounds.tipY + 0.52) {
             // Auto move to top
             MovePlayer(0, ySpeed - 2);
         } else {
             // Reach top and rotate player
-            if (transform.position.y > CameraScript.tipY && !topReached) {
+            if (transform.position.y > Backgrounds.tipY && !topReached) {
                 transform.Rotate(transform.rotation.x, transform.rotation.y, 90);
                 topReached = true;
             }
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("Finish", true);
 
                 // Readjust player position
-                transform.position = new Vector3(transform.position.x, CameraScript.tipY + 0.3f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, Backgrounds.tipY + 0.525f, transform.position.z);
             }
         }
     }

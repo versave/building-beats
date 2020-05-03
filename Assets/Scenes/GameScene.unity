@@ -319,6 +319,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8095403972594748748, guid: b2732ef9e6ba4a148ac1202edf40fef3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2732ef9e6ba4a148ac1202edf40fef3, type: 3}
 --- !u!4 &2134907213 stripped
@@ -327,6 +332,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2134907212}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2134907214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8095403972594748748, guid: b2732ef9e6ba4a148ac1202edf40fef3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2134907212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2134907215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7014608744192092554, guid: b2732ef9e6ba4a148ac1202edf40fef3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2134907212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2134907216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134907215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836f60daf616b3b4b8132759442cf228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgrounds:
+  - {fileID: 479919337}
+  - {fileID: 337673802}
+  - {fileID: 1351576036}
+  leftCollider: {fileID: 2019344520}
+  rightCollider: {fileID: 518207025}
+  tip: {fileID: 2134907213}
+  roof: {fileID: 2134907214}
+  animator: {fileID: 512023419}
 --- !u!1001 &609820574268289442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -577,6 +615,11 @@ PrefabInstance:
       propertyPath: rightCollider
       value: 
       objectReference: {fileID: 518207025}
+    - target: {fileID: 4702723679821814171, guid: 4b16a1e108f6b11499da7a6b943b5a37,
+        type: 3}
+      propertyPath: roof
+      value: 
+      objectReference: {fileID: 2134907214}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b16a1e108f6b11499da7a6b943b5a37, type: 3}
 --- !u!1001 &5947492636443770476
@@ -718,7 +761,7 @@ PrefabInstance:
     - target: {fileID: 7652357195241210439, guid: 10573ce77c66e9946af27f5ce8d4f6f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.673
+      value: -1.697
       objectReference: {fileID: 0}
     - target: {fileID: 7652357195241210439, guid: 10573ce77c66e9946af27f5ce8d4f6f2,
         type: 3}
