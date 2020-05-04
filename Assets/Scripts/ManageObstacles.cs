@@ -9,10 +9,10 @@ public class ManageObstacles : MonoBehaviour
     public float trigggerValue;
     public float spawnOffset;
 
-    int lastSpawn = 0;
-    float posY = 0;
+    int lastSpawn;
+    float posY;
     float camY;
-    float lastPosition = 0;
+    float lastPosition;
     bool audioPlaying;
 
     public GameObject[] prefabs;
@@ -111,16 +111,6 @@ public class ManageObstacles : MonoBehaviour
             if (obstacles[index].transform.position.y > Backgrounds.tipY || obstacles[index].transform.position.y > camTop + 0.5f) {
                 Destroy(obstacles[index]);
             }
-        }
-    }
-
-    int GetRandomObject(int index) {
-        if (index <= 2) {
-            return Random.Range(0, 3);
-        } else if (index > 2 && index <= 5) {
-            return Random.Range(3, 6);
-        } else {
-            return Random.Range(6, 9);
         }
     }
 }

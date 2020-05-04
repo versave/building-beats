@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static AudioClip songClip;
     public AudioClip defaultClip;
+    
     GameObject player;
     
     public static int? selectedBeatIndex = 2;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public static bool gameOver = false;
     public static bool gameFinish = false;
     public static bool deathsIncremented = false;
+    public static bool audioPlayed = false;
     public bool godMode;
     
 
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        if(!initialPlay && !gameFinish && !AudioSpectrum.audioSource.isPlaying && AudioSpectrum.audioSource.time > 0) {
+        if(!initialPlay && !gameFinish && AudioSpectrum.beatFinished) {
             gameFinish = true;
         }
     }
@@ -109,6 +111,8 @@ public class GameManager : MonoBehaviour
 
     void ResetGame() {
         Player.topReached = false;
+        AudioSpectrum.beatFinished = false;
+
         gameOver = false;
         gameFinish = false;
         deathsIncremented = false;

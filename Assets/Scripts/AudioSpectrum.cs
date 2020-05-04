@@ -7,6 +7,7 @@ public class AudioSpectrum : MonoBehaviour
 
     public static float[] freqBands = new float[8];
     public static float[] audioBand = new float[8];
+    public static bool beatFinished = false;
 
     readonly float[] samples = new float[512];
     readonly float[] freqBandHighest = new float[8];
@@ -18,6 +19,7 @@ public class AudioSpectrum : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = GameManager.songClip;
+        beatFinished = false;
     }
 
     // Update is called once per frame
@@ -27,6 +29,10 @@ public class AudioSpectrum : MonoBehaviour
         if(!GameManager.initialPlay && playAudio) {
             audioSource.Play();
             playAudio = false;
+        }
+
+        if(!audioSource.isPlaying && !beatFinished) {
+            beatFinished = true;
         }
         
         GetSpectrumAudioSource();
@@ -67,10 +73,6 @@ public class AudioSpectrum : MonoBehaviour
 
             audioBand[i] = (freqBands[i] / freqBandHighest[i]);
         }
-    }
-
-    public void StopAudio() {
-        audioSource.Stop();
     }
 
     public static void SetVolume(float volume) {
