@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     
     GameObject player;
     
-    public static int? selectedBeatIndex = 2;
+    public static int? selectedBeatIndex = 4;
     public static int deaths;
     public static bool playIntro = true;
     public static bool initialPlay = true;

@@ -674,7 +674,7 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultClip
       value: 
-      objectReference: {fileID: 8300000, guid: 33838a04fb9ef254cb6fe50d878562b7, type: 3}
+      objectReference: {fileID: 8300000, guid: ba597b3cffb47244c9b837b10b189faa, type: 3}
     - target: {fileID: 4929195402446197370, guid: ebb53e8274953ee49ad3f8723206a301,
         type: 3}
       propertyPath: audioContainer
@@ -750,6 +750,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PreserveAspect
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598785960037616608, guid: 1c824557a23e9654c80ea6f078df8239,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7598785960037616609, guid: 1c824557a23e9654c80ea6f078df8239,
         type: 3}
