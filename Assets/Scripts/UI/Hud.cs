@@ -7,7 +7,7 @@ public class Hud : MonoBehaviour
     public GameObject gameOverMenu;
     public GameObject gameFinishMenu;
     public Text timeText;
-    public Text attemptsText;
+    public Text scoreText;
 
     bool openMenu = true;
 
@@ -32,7 +32,7 @@ public class Hud : MonoBehaviour
         // Open finish menu
         if (GameManager.gameFinish && Player.topReached && openMenu) {
             gameFinishMenu.SetActive(true);
-            attemptsText.text = (GameManager.deaths + 1).ToString();
+            scoreText.text = (GameManager.score).ToString();
             openMenu = false;
         }
     }

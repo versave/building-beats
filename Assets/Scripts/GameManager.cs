@@ -10,14 +10,14 @@ public class GameManager : MonoBehaviour
     
     GameObject player;
     
-    public static int? selectedBeatIndex = 4;
-    public static int deaths;
+    public static int? selectedBeatIndex = 3;
+    public static int score = 0;
     public static bool playIntro = true;
     public static bool initialPlay = true;
     public static bool gameOver = false;
     public static bool gameFinish = false;
-    public static bool deathsIncremented = false;
     public static bool audioPlayed = false;
+    
     public bool godMode;
     
 
@@ -32,16 +32,13 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
+        AdjustResolutionForPc();
+
         if (!player) {
             player = GameObject.FindGameObjectWithTag("Player");
         }
 
         if (gameOver && !godMode) {
-            if(!deathsIncremented) {
-                deaths++;
-                deathsIncremented = true;
-            }
-
             GameOver();
         }
 
@@ -87,11 +84,11 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() {
         initialPlay = false;
+        score = 0;
     }
 
     public void BackToMenu() {
         initialPlay = true;
-        deaths = 0;
 
         ResetGame();
         LoadScene(0);
@@ -103,8 +100,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void RefreshGame() {
-        deaths = 0;
-
         ResetGame();
         LoadScene(1);
     }
@@ -115,6 +110,16 @@ public class GameManager : MonoBehaviour
 
         gameOver = false;
         gameFinish = false;
-        deathsIncremented = false;
+        score = 0;
+    }
+
+    void AdjustResolutionForPc() {
+        if (Screen.width > 350) {
+            Screen.SetResolution(350, 700, false);
+        }
+
+        if (Screen.fullScreen) {
+            Screen.fullScreen = false;
+        }
     }
 }

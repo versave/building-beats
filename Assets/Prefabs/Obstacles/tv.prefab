@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2415648051916019468}
   - component: {fileID: 2415648051916019469}
-  - component: {fileID: -419833227005500438}
   - component: {fileID: -3797899838678203286}
   - component: {fileID: -1127715599009963594}
   - component: {fileID: -8260027185176705091}
+  - component: {fileID: 7720950968269978812}
   m_Layer: 0
   m_Name: tv
   m_TagString: Obstacle
@@ -85,19 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-419833227005500438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2415648051916019470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32a8cc97410e2684487e1ba2356cf424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destoyOffset: 10
 --- !u!61 &-3797899838678203286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,3 +144,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2e007527636c147a26dfe8807e5620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7720950968269978812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415648051916019470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81524d2ff8a4464db906c3ba607fdc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destoyOffset: 10

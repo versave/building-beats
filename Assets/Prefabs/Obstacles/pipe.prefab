@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8211271461600247559}
   - component: {fileID: 8211271461600247558}
-  - component: {fileID: 4694035153833037042}
   - component: {fileID: -8829089490095874854}
+  - component: {fileID: 1347399245661944256}
   m_Layer: 0
   m_Name: pipe
   m_TagString: Obstacle
@@ -83,19 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4694035153833037042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8211271461600247557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32a8cc97410e2684487e1ba2356cf424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destoyOffset: 10
 --- !u!61 &-8829089490095874854
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,3 +109,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 3.1}
   m_EdgeRadius: 0
+--- !u!114 &1347399245661944256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8211271461600247557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81524d2ff8a4464db906c3ba607fdc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destoyOffset: 10
